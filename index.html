@@ -810,16 +810,20 @@
       '</div>';
 
     if(!state.calAdded){
-      document.getElementById("calBtn").addEventListener("click", async function(){
+      document.getElementById("calBtn").addEventListener("click", function(){
         var email = document.getElementById("femail").value.trim();
-        if(email){
-          try{
-            await apiPost({action:"update_email", id:r.id, email:email});
-          }catch(err){ /* no bloquea, solo no se guarda el correo */ }
+        // Se abre de inmediato, dentro del mismo gesto del usuario — en celular,
+        // si esto se retrasa (por ejemplo esperando a guardar el correo primero),
+        // el navegador lo bloquea como pop-up.
+        var calWin = window.open("", "_blank");
+        if(calWin){
+          calWin.location.href = googleCalendarUrl(r);
         }
-        window.open(googleCalendarUrl(r), "_blank");
         state.calAdded = true;
         render();
+        if(email){
+          apiPost({action:"update_email", id:r.id, email:email}).catch(function(){ /* no bloquea */ });
+        }
       });
     }
   }
