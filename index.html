@@ -60,6 +60,22 @@
     .mark circle{ animation:none; transform:scale(0.86); }
   }
 
+  /* ---------- brand lockup ---------- */
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    margin-bottom:22px;
+  }
+  .brand-mark{ width:28px; height:28px; }
+  .brand span{
+    font-family:'Newsreader', serif;
+    font-style:italic;
+    font-size:17px;
+    color:var(--moss-deep);
+    letter-spacing:0.01em;
+  }
+
   header p.lede{
     margin-top:14px;
     font-size:17px;
@@ -602,7 +618,7 @@
 
     app.innerHTML =
       '<header>'+
-        svgMark(64,'mark')+
+        '<div class="brand">'+svgMark(30,'mark brand-mark')+'<span>Yoga con Ximena</span></div>'+
         '<h1>Clases de yoga gratis en septiembre</h1>'+
         '<p class="lede">Una clase de prueba, sin costo, para conocer el espacio y el ritmo antes de inscribirte. Cupo limitado por horario.</p>'+
       '</header>'+
