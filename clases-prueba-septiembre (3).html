@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clases de yoga gratis — Septiembre</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#26332c;
+    --paper:#f1efe4;
+    --paper-raised:#e8e4d3;
+    --moss:#5f7a56;
+    --moss-deep:#465a3f;
+    --clay:#b97a68;
+    --taupe:#9c9583;
+    --line:#d6d0bd;
+    --white:#fffdf7;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Archivo', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{
+    max-width:640px;
+    margin:0 auto;
+    padding:40px 24px 80px;
+  }
+  h1,h2,h3{
+    font-family:'Newsreader', serif;
+    font-weight:500;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  /* ---------- breathing mark ---------- */
+  .mark{
+    width:64px; height:64px;
+    margin-bottom:28px;
+  }
+  .mark circle{
+    fill:none;
+    stroke:var(--moss);
+    stroke-width:1.4;
+    transform-origin:center;
+    animation:breathe 5.5s ease-in-out infinite;
+  }
+  .mark circle:nth-child(2){ animation-delay:.15s; opacity:.55; }
+  .mark circle:nth-child(3){ animation-delay:.3s; opacity:.3; }
+  @keyframes breathe{
+    0%,100%{ transform:scale(0.72); }
+    50%{ transform:scale(1); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .mark circle{ animation:none; transform:scale(0.86); }
+  }
+
+  header p.lede{
+    margin-top:14px;
+    font-size:17px;
+    line-height:1.55;
+    color:#4c5748;
+    max-width:46ch;
+  }
+  header h1{
+    font-size:38px;
+    line-height:1.12;
+  }
+
+  section{ margin-top:44px; }
+  .section-title{
+    font-size:22px;
+    margin-bottom:16px;
+  }
+  .section-note{
+    font-size:14px;
+    color:var(--taupe);
+    margin-top:-8px;
+    margin-bottom:18px;
+  }
+
+  /* ---------- date chips ---------- */
+  .dates{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .date-chip{
+    font-family:'Archivo',sans-serif;
+    font-size:14px;
+    font-weight:600;
+    padding:10px 14px;
+    border-radius:9px;
+    border:1.5px solid var(--line);
+    background:var(--white);
+    color:var(--ink);
+    cursor:pointer;
+    line-height:1.2;
+    text-align:left;
+    transition:border-color .15s ease, background .15s ease;
+  }
+  .date-chip .d1{ display:block; font-size:12px; color:var(--taupe); font-weight:500; }
+  .date-chip[aria-pressed="true"]{
+    background:var(--moss);
+    border-color:var(--moss);
+    color:var(--white);
+  }
+  .date-chip[aria-pressed="true"] .d1{ color:#dfe8db; }
+  .date-chip.full{
+    opacity:.45;
+    text-decoration:line-through;
+    cursor:not-allowed;
+  }
+  .date-chip:not(.full):not([aria-pressed="true"]):hover{
+    border-color:var(--moss);
+  }
+
+  /* ---------- slots ---------- */
+  .slots{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-top:22px;
+  }
+  .slot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 18px;
+    background:var(--white);
+    border:1.5px solid var(--line);
+    border-radius:11px;
+  }
+  .slot-time{ font-size:17px; font-weight:600; }
+  .slot-spots{ font-size:13.5px; color:var(--taupe); margin-top:2px; }
+  .slot.full .slot-spots{ color:var(--clay); }
+  .btn{
+    font-family:'Archivo',sans-serif;
+    font-size:14.5px;
+    font-weight:600;
+    padding:10px 18px;
+    border-radius:8px;
+    border:none;
+    cursor:pointer;
+    background:var(--moss);
+    color:var(--white);
+    transition:background .15s ease;
+  }
+  .btn:hover{ background:var(--moss-deep); }
+  .btn:disabled{
+    background:var(--paper-raised);
+    color:var(--taupe);
+    cursor:not-allowed;
+  }
+  .btn.secondary{
+    background:transparent;
+    color:var(--moss-deep);
+    border:1.5px solid var(--line);
+  }
+  .btn.secondary:hover{ border-color:var(--moss); background:transparent; }
+  .btn.ghost{
+    background:transparent;
+    color:var(--taupe);
+    padding:10px 4px;
+  }
+  .btn.ghost:hover{ color:var(--ink); background:transparent; }
+
+  /* ---------- form ---------- */
+  .back{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-size:14px;
+    color:var(--taupe);
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:0 0 26px;
+    font-family:'Archivo',sans-serif;
+  }
+  .back:hover{ color:var(--ink); }
+  .picked{
+    background:var(--paper-raised);
+    border-radius:11px;
+    padding:16px 18px;
+    margin-bottom:28px;
+  }
+  .picked .cap{ font-size:13px; color:var(--taupe); }
+  .picked .val{ font-family:'Newsreader',serif; font-size:20px; margin-top:2px; }
+
+  label{
+    display:block;
+    font-size:13.5px;
+    font-weight:600;
+    color:#4c5748;
+    margin-bottom:7px;
+  }
+  .field{ margin-bottom:20px; }
+  input[type="text"], input[type="number"], input[type="email"]{
+    width:100%;
+    font-family:'Archivo',sans-serif;
+    font-size:16px;
+    padding:12px 14px;
+    border-radius:9px;
+    border:1.5px solid var(--line);
+    background:var(--white);
+    color:var(--ink);
+  }
+  input:focus{ outline:2px solid var(--moss); outline-offset:1px; }
+  .level-group{ display:flex; gap:8px; flex-wrap:wrap; }
+  .level-opt{
+    flex:1;
+    min-width:100px;
+    text-align:center;
+    padding:11px 10px;
+    border-radius:9px;
+    border:1.5px solid var(--line);
+    background:var(--white);
+    cursor:pointer;
+    font-size:14px;
+    font-weight:600;
+  }
+  .level-opt[aria-pressed="true"]{
+    background:var(--moss);
+    border-color:var(--moss);
+    color:var(--white);
+  }
+  .form-error{
+    font-size:13.5px;
+    color:var(--clay);
+    margin:-8px 0 18px;
+  }
+  .actions{ margin-top:30px; }
+
+  /* ---------- confirm ---------- */
+  .confirm-mark{ width:52px; height:52px; margin-bottom:20px; }
+  .confirm-mark circle{ animation:none; }
+  .confirm h2{ font-size:27px; margin-bottom:10px; }
+  .confirm p{ font-size:16px; line-height:1.6; color:#4c5748; max-width:46ch; }
+  .mat-note{
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+    background:var(--paper-raised);
+    border-radius:12px;
+    padding:18px 20px;
+    margin:26px 0 34px;
+  }
+  .mat-note svg{ flex-shrink:0; margin-top:2px; }
+  .mat-note .t{ font-weight:600; font-size:15px; margin-bottom:3px; }
+  .mat-note .s{ font-size:14px; color:#5a6155; line-height:1.5; }
+  .cal-block{ border-top:1px solid var(--line); padding-top:26px; margin-top:8px; }
+  .cal-block .section-title{ font-size:17px; margin-bottom:6px; }
+  .cal-block p{ font-size:14px; color:var(--taupe); margin:0 0 16px; max-width:46ch; }
+  .cal-row{ display:flex; gap:10px; }
+  .cal-row input{ flex:1; }
+  .done-note{ font-size:13.5px; color:var(--moss-deep); margin-top:14px; }
+
+  .full-msg{
+    background:var(--paper-raised);
+    border-radius:11px;
+    padding:16px 18px;
+    font-size:14.5px;
+    margin-bottom:18px;
+    color:#4c5748;
+  }
+
+  footer{
+    margin-top:56px;
+    padding-top:22px;
+    border-top:1px solid var(--line);
+    font-size:12.5px;
+    color:var(--taupe);
+  }
+
+  .admin-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:26px;
+  }
+  .admin-bar .summary{ font-size:14px; color:var(--taupe); }
+  .pin-box{ max-width:280px; }
+  .pin-box p{ font-size:14px; color:#4c5748; margin-bottom:16px; }
+  table.regs{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13.5px;
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:11px;
+    overflow:hidden;
+  }
+  table.regs th, table.regs td{
+    text-align:left;
+    padding:10px 12px;
+    border-bottom:1px solid var(--line);
+    white-space:nowrap;
+  }
+  table.regs th{
+    font-family:'Archivo',sans-serif;
+    font-weight:600;
+    color:#4c5748;
+    background:var(--paper-raised);
+  }
+  table.regs tr:last-child td{ border-bottom:none; }
+  .table-scroll{ overflow-x:auto; }
+  .empty-note{ font-size:14px; color:var(--taupe); }
+
+  .loading{ font-size:14px; color:var(--taupe); }
+  .sr-only{
+    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+  }
+</style>
+</head>
+<body>
+<div class="wrap" id="app">
+  <div class="loading">Cargando horarios…</div>
+</div>
+
+<script>
+(function(){
+  // ⚠️ Pega aquí la URL que te da Apps Script al publicar (termina en /exec)
+  var API_URL = "https://script.google.com/macros/s/AKfycbzmzSujIy-E4alnML1fhH1nc_0AcRA2HQDeKq0AlPAQzVZfXDB4tEuVW5B9Eh1Lq0W1/exec";
+
+  var CAPACITY = 8;
+  var CLASS_DURATION_HOURS = 50/60; // la clase dura 50 minutos
+  var TZ_OFFSET_HOURS = 6; // Zapopan / Ciudad de México, horario estándar todo el año
+  var LOCATION_NAME = "Villa Universitaria";
+  var LOCATION_ADDRESS = "Callejón de los Mosqueteros 4173, Col. Villa Universitaria, Zapopan, Jalisco";
+  var LOCATION_MAPS_URL = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(LOCATION_ADDRESS);
+
+  // Mondays and Wednesdays starting Sept 7, 2026
+  var DATE_STRINGS = ["2026-09-07","2026-09-09","2026-09-14","2026-09-16","2026-09-21","2026-09-23","2026-09-28","2026-09-30"];
+  var TIMES = ["08:00","09:00","10:00"];
+
+  var DAY_NAMES = ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
+  var MONTH_NAMES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+
+  function parseLocalDate(dateStr){
+    var parts = dateStr.split("-");
+    return new Date(parseInt(parts[0],10), parseInt(parts[1],10)-1, parseInt(parts[2],10));
+  }
+  function dayLabel(dateStr){
+    var d = parseLocalDate(dateStr);
+    var dow = DAY_NAMES[d.getDay()];
+    return dow.charAt(0).toUpperCase()+dow.slice(1);
+  }
+  function dateNum(dateStr){
+    return parseLocalDate(dateStr).getDate();
+  }
+  function fullDateLabel(dateStr){
+    var d = parseLocalDate(dateStr);
+    return DAY_NAMES[d.getDay()]+" "+d.getDate()+" de "+MONTH_NAMES[d.getMonth()];
+  }
+  function timeLabel(t){
+    var h = parseInt(t.split(":")[0],10);
+    var ampm = h < 12 ? "am" : "pm";
+    var h12 = h % 12; if(h12===0) h12=12;
+    return h12+":00 "+ampm;
+  }
+
+  var state = {
+    loading: true,
+    loadError: "",
+    counts: {},
+    selectedDate: DATE_STRINGS[0],
+    selectedTime: null,
+    view: "calendar", // calendar | form | confirm | full | admin-login | admin
+    lastRecord: null,
+    formError: "",
+    email: "",
+    calAdded: false,
+    adminAuthed: false,
+    adminKey: "",
+    adminList: [],
+    adminError: ""
+  };
+
+  var app = document.getElementById("app");
+
+  function slotKey(date, time){ return date + "|" + time; }
+
+  function dateIsFull(date, counts){
+    return TIMES.every(function(t){ return (counts[slotKey(date,t)]||0) >= CAPACITY; });
+  }
+
+  function apiConfigured(){
+    return API_URL && API_URL.indexOf("PEGA_AQUI") === -1;
+  }
+
+  // GET requests (leer conteos / lista) van directo por querystring.
+  async function apiGet(params){
+    var url = API_URL + "?" + new URLSearchParams(params).toString();
+    var res = await fetch(url);
+    return await res.json();
+  }
+
+  // POST con Content-Type text/plain: evita el preflight CORS que Apps Script no soporta.
+  async function apiPost(payload){
+    var res = await fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(payload)
+    });
+    return await res.json();
+  }
+
+  async function loadCounts(){
+    if(!apiConfigured()){
+      state.loading = false;
+      state.loadError = "config";
+      render();
+      return;
+    }
+    try{
+      var data = await apiGet({action:"counts"});
+      state.counts = (data && data.ok) ? data.counts : {};
+      state.loadError = "";
+    }catch(e){
+      state.loadError = "network";
+    }
+    state.loading = false;
+    render();
+  }
+
+  function svgMark(size, cls){
+    return '<svg class="'+cls+'" width="'+size+'" height="'+size+'" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">'+
+      '<circle cx="32" cy="32" r="30"/><circle cx="32" cy="32" r="21"/><circle cx="32" cy="32" r="12"/></svg>';
+  }
+
+  function matSvg(){
+    return '<svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">'+
+      '<rect x="3" y="7" width="18" height="10" rx="2" stroke="#5f7a56" stroke-width="1.6"/>'+
+      '<path d="M3 12h18" stroke="#5f7a56" stroke-width="1.6"/></svg>';
+  }
+
+  function render(){
+    if(state.loading){
+      app.innerHTML = '<div class="loading">Cargando horarios…</div>';
+      return;
+    }
+    if(state.loadError === "config"){
+      app.innerHTML = '<div class="full-msg">Este formulario todavía no está conectado a la hoja de cálculo. Falta pegar la URL de Apps Script en el código (variable API_URL).</div>';
+      return;
+    }
+    if(state.loadError === "network"){
+      app.innerHTML = '<div class="full-msg">No pudimos cargar los horarios. Revisa tu conexión y recarga la página.</div>';
+      return;
+    }
+    if(state.view === "calendar") return renderCalendar();
+    if(state.view === "form") return renderForm();
+    if(state.view === "confirm") return renderConfirm();
+    if(state.view === "full") return renderFull();
+    if(state.view === "admin-login") return renderAdminLogin();
+    if(state.view === "admin") return renderAdmin();
+  }
+
+  function renderAdminLogin(){
+    app.innerHTML =
+      '<button class="back" id="backBtn">← Volver al calendario</button>'+
+      '<h2 class="section-title">Panel de registros</h2>'+
+      '<div class="pin-box">'+
+        '<p>Escribe tu código de acceso para ver quién se ha registrado.</p>'+
+        (state.adminError ? '<div class="form-error">'+state.adminError+'</div>' : '')+
+        '<form id="pinForm">'+
+          '<div class="field"><label for="pinInput">Código</label><input type="text" id="pinInput" autocomplete="off"></div>'+
+          '<button type="submit" class="btn">Entrar</button>'+
+        '</form>'+
+      '</div>';
+    document.getElementById("backBtn").addEventListener("click", function(){
+      state.view = "calendar";
+      render();
+    });
+    document.getElementById("pinForm").addEventListener("submit", async function(e){
+      e.preventDefault();
+      var val = document.getElementById("pinInput").value.trim();
+      var btn = e.target.querySelector("button[type=submit]");
+      btn.disabled = true; btn.textContent = "Entrando…";
+      try{
+        var data = await apiGet({action:"list", key: val});
+        if(data && data.ok){
+          state.adminAuthed = true;
+          state.adminKey = val;
+          state.adminList = data.registrations || [];
+          state.adminError = "";
+          state.view = "admin";
+        }else{
+          state.adminError = "Código incorrecto.";
+        }
+      }catch(err){
+        state.adminError = "No se pudo conectar con la hoja de cálculo.";
+      }
+      render();
+    });
+  }
+
+  function toCsv(list){
+    var header = ["Fecha","Hora","Nombre","Edad","Teléfono","Nivel","Correo","Registrado el"];
+    var rows = list.map(function(r){
+      return [r.date, r.time, r.name, r.age, r.phone||"", r.level, r.email||"", r.ts].map(function(v){
+        var s = String(v==null?"":v).replace(/"/g,'""');
+        return '"'+s+'"';
+      }).join(",");
+    });
+    return header.join(",") + "\n" + rows.join("\n");
+  }
+
+  function downloadCsv(list){
+    var csv = toCsv(list);
+    var blob = new Blob([csv], {type:"text/csv;charset=utf-8;"});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = "registros-clases-yoga.csv";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  async function renderAdmin(){
+    app.innerHTML = '<div class="loading">Actualizando lista…</div>';
+    try{
+      var data = await apiGet({action:"list", key: state.adminKey});
+      if(data && data.ok){ state.adminList = data.registrations || []; }
+    }catch(e){ /* keep whatever we had */ }
+
+    var sorted = state.adminList.slice().sort(function(a,b){
+      return (a.date+a.time).localeCompare(b.date+b.time);
+    });
+    var totalSlots = DATE_STRINGS.length * TIMES.length;
+    var totalCap = totalSlots * CAPACITY;
+    var totalUsed = sorted.length;
+
+    var rowsHtml = sorted.map(function(r){
+      return '<tr>'+
+        '<td>'+fullDateLabel(r.date)+'</td>'+
+        '<td>'+timeLabel(r.time)+'</td>'+
+        '<td>'+r.name+'</td>'+
+        '<td>'+r.age+'</td>'+
+        '<td>'+(r.phone||'—')+'</td>'+
+        '<td>'+r.level+'</td>'+
+        '<td>'+(r.email||'—')+'</td>'+
+        '</tr>';
+    }).join("");
+
+    app.innerHTML =
+      '<button class="back" id="backBtn">← Volver al calendario</button>'+
+      '<div class="admin-bar">'+
+        '<h2 class="section-title" style="margin-bottom:0">Registros</h2>'+
+        '<span class="summary">'+totalUsed+' de '+totalCap+' lugares ocupados</span>'+
+      '</div>'+
+      '<p class="section-note" style="margin-top:-10px">Esta lista también vive en tu Google Sheet — puedes abrirla ahí directamente cuando quieras.</p>'+
+      (sorted.length === 0 ?
+        '<p class="empty-note">Todavía no hay registros.</p>' :
+        '<div class="table-scroll"><table class="regs"><thead><tr>'+
+          '<th>Fecha</th><th>Hora</th><th>Nombre</th><th>Edad</th><th>Teléfono</th><th>Nivel</th><th>Correo</th>'+
+        '</tr></thead><tbody>'+rowsHtml+'</tbody></table></div>'+
+        '<div class="actions"><button class="btn secondary" id="csvBtn">Descargar CSV</button></div>'
+      );
+
+    document.getElementById("backBtn").addEventListener("click", function(){
+      state.view = "calendar";
+      render();
+    });
+    if(sorted.length){
+      document.getElementById("csvBtn").addEventListener("click", function(){
+        downloadCsv(sorted);
+      });
+    }
+  }
+
+  function renderCalendar(){
+    var counts = state.counts;
+
+    var datesHtml = DATE_STRINGS.map(function(d){
+      var full = dateIsFull(d, counts);
+      var pressed = d === state.selectedDate;
+      return '<button class="date-chip'+(full?' full':'')+'" aria-pressed="'+pressed+'" '+
+        'data-date="'+d+'" '+(full?'disabled':'')+'>'+
+        '<span class="d1">'+dayLabel(d)+'</span>'+dateNum(d)+' sept'+
+        '</button>';
+    }).join("");
+
+    var slotsHtml = TIMES.map(function(t){
+      var used = counts[slotKey(state.selectedDate, t)] || 0;
+      var remaining = CAPACITY - used;
+      var full = remaining <= 0;
+      var spotsText = full ? "Sin cupo" : (remaining === 1 ? "1 lugar disponible" : remaining + " lugares disponibles");
+      return '<div class="slot'+(full?' full':'')+'">'+
+        '<div><div class="slot-time">'+timeLabel(t)+'</div><div class="slot-spots">'+spotsText+'</div></div>'+
+        '<button class="btn" data-time="'+t+'" '+(full?'disabled':'')+'>'+(full?'Lleno':'Reservar')+'</button>'+
+        '</div>';
+    }).join("");
+
+    app.innerHTML =
+      '<header>'+
+        svgMark(64,'mark')+
+        '<h1>Clases de yoga gratis en septiembre</h1>'+
+        '<p class="lede">Una clase de prueba, sin costo, para conocer el espacio y el ritmo antes de inscribirte. Cupo limitado por horario.</p>'+
+      '</header>'+
+      '<section>'+
+        '<h2 class="section-title">Elige tu día</h2>'+
+        '<div class="dates" id="dates">'+datesHtml+'</div>'+
+      '</section>'+
+      '<section>'+
+        '<h2 class="section-title">'+fullDateLabel(state.selectedDate)+'</h2>'+
+        '<div class="slots" id="slots">'+slotsHtml+'</div>'+
+      '</section>'+
+      '<footer>Todas las clases duran 50 minutos, en '+LOCATION_NAME+'. Llega 10 minutos antes.'+
+        '<div style="margin-top:10px"><button class="btn ghost" id="adminLink" style="font-size:12px;padding:0">Panel de registros →</button></div>'+
+      '</footer>';
+
+    document.getElementById("dates").addEventListener("click", function(e){
+      var btn = e.target.closest(".date-chip");
+      if(!btn || btn.disabled) return;
+      state.selectedDate = btn.getAttribute("data-date");
+      render();
+    });
+    document.getElementById("slots").addEventListener("click", function(e){
+      var btn = e.target.closest(".btn");
+      if(!btn || btn.disabled) return;
+      state.selectedTime = btn.getAttribute("data-time");
+      state.formError = "";
+      state.view = "form";
+      render();
+    });
+    document.getElementById("adminLink").addEventListener("click", function(){
+      state.view = state.adminAuthed ? "admin" : "admin-login";
+      render();
+    });
+  }
+
+  function renderFull(){
+    app.innerHTML =
+      '<button class="back" id="backBtn">← Ver otros horarios</button>'+
+      '<div class="full-msg">Ese horario se acaba de llenar mientras completabas tus datos. Elige otro día u horario disponible.</div>';
+    document.getElementById("backBtn").addEventListener("click", function(){
+      state.view = "calendar";
+      render();
+    });
+  }
+
+  function renderForm(){
+    app.innerHTML =
+      '<button class="back" id="backBtn">← Elegir otro horario</button>'+
+      '<div class="picked"><div class="cap">Tu horario</div><div class="val">'+fullDateLabel(state.selectedDate)+' · '+timeLabel(state.selectedTime)+'</div></div>'+
+      '<h2 class="section-title">Cuéntanos un poco de ti</h2>'+
+      (state.formError ? '<div class="form-error">'+state.formError+'</div>' : '')+
+      '<form id="regForm">'+
+        '<div class="field"><label for="fname">Nombre completo</label><input type="text" id="fname" required></div>'+
+        '<div class="field"><label for="fage">Edad</label><input type="number" id="fage" min="10" max="100" required></div>'+
+        '<div class="field"><label for="fphone">Teléfono (WhatsApp)</label><input type="tel" id="fphone" placeholder="33 1234 5678" required></div>'+
+        '<div class="field"><label>Nivel de yoga</label>'+
+          '<div class="level-group" id="levelGroup">'+
+            ['Principiante','Intermedio','Avanzado'].map(function(l){
+              return '<div class="level-opt" data-level="'+l+'" aria-pressed="false">'+l+'</div>';
+            }).join("")+
+          '</div>'+
+        '</div>'+
+        '<div class="actions"><button type="submit" class="btn">Confirmar mi lugar</button></div>'+
+      '</form>';
+
+    document.getElementById("backBtn").addEventListener("click", function(){
+      state.view = "calendar";
+      render();
+    });
+
+    var selectedLevel = "";
+    document.getElementById("levelGroup").addEventListener("click", function(e){
+      var opt = e.target.closest(".level-opt");
+      if(!opt) return;
+      selectedLevel = opt.getAttribute("data-level");
+      document.querySelectorAll(".level-opt").forEach(function(o){
+        o.setAttribute("aria-pressed", o === opt ? "true" : "false");
+      });
+    });
+
+    document.getElementById("regForm").addEventListener("submit", async function(e){
+      e.preventDefault();
+      var name = document.getElementById("fname").value.trim();
+      var age = document.getElementById("fage").value;
+      var phone = document.getElementById("fphone").value.trim();
+      if(!name || !age || !phone || !selectedLevel){
+        state.formError = "Completa tu nombre, edad, teléfono y nivel para continuar.";
+        render();
+        return;
+      }
+      if(!apiConfigured()){
+        state.formError = "El formulario todavía no está conectado a la hoja de cálculo.";
+        render();
+        return;
+      }
+      var submitBtn = e.target.querySelector("button[type=submit]");
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Reservando…";
+
+      var record = {
+        id: Date.now().toString(36) + Math.random().toString(36).slice(2,8),
+        date: state.selectedDate,
+        time: state.selectedTime,
+        name: name,
+        age: age,
+        phone: phone,
+        level: selectedLevel
+      };
+
+      try{
+        var res = await apiPost(record);
+        if(!res || !res.ok){
+          if(res && res.reason === "full"){
+            var fresh = await apiGet({action:"counts"});
+            state.counts = (fresh && fresh.ok) ? fresh.counts : state.counts;
+            state.view = "full";
+            render();
+            return;
+          }
+          throw new Error("save-failed");
+        }
+      }catch(err){
+        state.formError = "No pudimos guardar tu registro. Revisa tu conexión e intenta de nuevo.";
+        render();
+        return;
+      }
+
+      // refresca el conteo para el resto de la sesión
+      try{
+        var updated = await apiGet({action:"counts"});
+        if(updated && updated.ok) state.counts = updated.counts;
+      }catch(err){ /* no bloquea la confirmación */ }
+
+      record.email = "";
+      state.lastRecord = record;
+      state.view = "confirm";
+      state.email = "";
+      state.calAdded = false;
+      render();
+    });
+  }
+
+  function googleCalendarUrl(record){
+    var d = parseLocalDate(record.date);
+    var h = parseInt(record.time.split(":")[0],10);
+    var startUTC = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), h + TZ_OFFSET_HOURS, 0));
+    var endUTC = new Date(startUTC.getTime() + CLASS_DURATION_HOURS*3600*1000);
+    function fmt(dt){
+      return dt.toISOString().replace(/[-:]/g,"").split(".")[0]+"Z";
+    }
+    var params = new URLSearchParams({
+      action: "TEMPLATE",
+      text: "Clase de yoga gratis (prueba)",
+      dates: fmt(startUTC)+"/"+fmt(endUTC),
+      details: "Tu clase de yoga de prueba, sin costo, dura 50 minutos. No olvides traer tu tapete.",
+      location: LOCATION_ADDRESS,
+    });
+    return "https://calendar.google.com/calendar/render?"+params.toString();
+  }
+
+  function confirmMessage(r){
+    var firstName = r.name.split(" ")[0];
+    return "Gracias por registrarte, "+firstName+". Tu clase de yoga de prueba quedó agendada para el "+
+      fullDateLabel(r.date)+" a las "+timeLabel(r.time)+", en "+LOCATION_NAME+". Dura 50 minutos — llega 10 minutos antes y no olvides traer tu tapete.";
+  }
+
+  function renderConfirm(){
+    var r = state.lastRecord;
+    app.innerHTML =
+      svgMark(52,'mark confirm-mark')+
+      '<div class="confirm">'+
+        '<h2>¡Listo, '+r.name.split(" ")[0]+'!</h2>'+
+        '<p>'+confirmMessage(r)+'</p>'+
+        '<div class="mat-note">'+matSvg()+
+          '<div><div class="t">'+LOCATION_NAME+'</div>'+
+          '<div class="s">'+LOCATION_ADDRESS+'<br>Clase de 50 minutos. Trae tu propio tapete y algo de agua. Si tienes bloques o correa, también puedes traerlos. <a href="'+LOCATION_MAPS_URL+'" target="_blank" rel="noopener" style="color:var(--moss-deep);font-weight:600;">Cómo llegar →</a></div></div>'+
+        '</div>'+
+        '<div class="cal-block">'+
+          '<h3 class="section-title">¿Agregarlo a tu Google Calendar?</h3>'+
+          (state.calAdded ?
+            '<div class="done-note">Se abrió Google Calendar en una pestaña nueva para que confirmes el evento.</div>' :
+            '<p>Escribe tu correo para guardarlo en tu registro y añade el evento a tu calendario.</p>'+
+            '<div class="cal-row">'+
+              '<input type="email" id="femail" placeholder="tucorreo@ejemplo.com">'+
+              '<button class="btn secondary" id="calBtn">Agregar</button>'+
+            '</div>'
+          )+
+        '</div>'+
+      '</div>';
+
+    if(!state.calAdded){
+      document.getElementById("calBtn").addEventListener("click", async function(){
+        var email = document.getElementById("femail").value.trim();
+        if(email){
+          try{
+            await apiPost({action:"update_email", id:r.id, email:email});
+          }catch(err){ /* no bloquea, solo no se guarda el correo */ }
+        }
+        window.open(googleCalendarUrl(r), "_blank");
+        state.calAdded = true;
+        render();
+      });
+    }
+  }
+
+  loadCounts();
+})();
+</script>
+</body>
+</html>
